@@ -1,38 +1,105 @@
+:root {
+  --pageMax: 1200px;
+  --slateBlue: #282c34;
+  --greyBlue: #363941;
+  --lightGrey: #e4e4e4;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+section:nth-child(even) {
+  background-color: var(--greyBlue);
+}
+
 .App {
+  background-color: var(--slateBlue);
+  min-height: 100vh;
+}
+
+.section-container {
+  max-width: var(--pageMax);
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.title-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.title {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: left;
+  color: var(--lightGrey);
+}
+
+.support {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: right;
+  color: var(--lightGrey);
+}
+
+.ex-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.example {
+  height: 400px;
+  display: grid;
+}
+
+.example > iframe {
+  height: 100%;
+  width: 100%;
+  resize: both;
+  overflow: hidden;
+}
+
+.code-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 400px;
+}
+
+.tab-container {
+  width: 50%;
+  justify-self: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tab-container > button {
+  padding: 0.5em 0;
+  border-radius: 10px 10px 0 0;
+  background-color: var(--lightGrey);
+  border: 1px solid white;
+}
+
+.code {
+  background-color: #263238;
+  font-size: 1.3rem;
+  margin-top: -1px;
+}
+
+.code-bottom {
+  background-color: var(--lightGrey);
+  border: 1px solid white;
+  border-radius: 0 0 10px 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 856px) {
+  .section-container {
+    padding: 6rem 4rem;
   }
 }
