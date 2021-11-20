@@ -6,15 +6,22 @@ import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/css/css";
 import { Controlled as CodeMirror } from "react-codemirror2";
 
-export default function Example({ Html, Css }) {
+const htmlStyle = `
+html {
+  overflow: hidden;
+  font-family: sans-serif;
+}
+`;
+
+export default function Example({ example, colors }) {
   const [selectedTab, setSelectedTab] = useState("css");
-  const [css, setCss] = useState(Css);
-  const [html, setHtml] = useState(Html);
+  const [css, setCss] = useState(example.cssDynamic);
+  const [html, setHtml] = useState(example.html);
 
   const srcDoc = `
 	<html>
 		<body>${html}</body>
-		<style>${css}</style>
+		<style>${htmlStyle + example.cssStatic + css + colors}</style>
 	</html>
   `;
 
@@ -28,7 +35,7 @@ export default function Example({ Html, Css }) {
     <section>
       <div class='section-container'>
         <div className='title-container'>
-          <h2 className='title'>title</h2>
+          <h2 className='title'>{example.title}</h2>
           <div className='support'>details</div>
         </div>
         <div className='ex-container'>
@@ -45,8 +52,9 @@ export default function Example({ Html, Css }) {
               <button
                 style={{
                   backgroundColor: `${
-                    selectedTab === "html" ? "#263238" : "#e4e4e4"
+                    selectedTab === "html" ? "#263238" : "#aaa"
                   }`,
+                  cursor: `${selectedTab !== "html" ? "pointer" : ""}`,
                 }}
                 onClick={() => setSelectedTab("html")}>
                 html
@@ -54,8 +62,9 @@ export default function Example({ Html, Css }) {
               <button
                 style={{
                   backgroundColor: `${
-                    selectedTab === "css" ? "#263238" : "#e4e4e4"
+                    selectedTab === "css" ? "#263238" : "#aaa"
                   }`,
+                  cursor: `${selectedTab !== "css" ? "pointer" : ""}`,
                 }}
                 onClick={() => setSelectedTab("css")}>
                 css

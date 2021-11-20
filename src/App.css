@@ -1,8 +1,9 @@
 :root {
   --pageMax: 1200px;
-  --slateBlue: #282c34;
+  --slateBlue: #393f4d;
   --greyBlue: #363941;
   --lightGrey: #e4e4e4;
+  --lightBlueGrey: #e4e4e4;
 }
 
 h2 {
@@ -13,13 +14,13 @@ p {
   margin: 0;
 }
 
-section:nth-child(even) {
-  background-color: var(--greyBlue);
-}
-
 .App {
   background-color: var(--slateBlue);
   min-height: 100vh;
+}
+
+section:nth-child(even) {
+  background-color: var(--greyBlue);
 }
 
 .section-container {
@@ -31,20 +32,19 @@ section:nth-child(even) {
 .title-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  color: var(--lightGrey);
 }
 
 .title {
   display: grid;
   grid-template-rows: 1fr 1fr;
   justify-content: left;
-  color: var(--lightGrey);
 }
 
 .support {
   display: grid;
   grid-template-rows: 1fr 1fr;
   justify-content: right;
-  color: var(--lightGrey);
 }
 
 .ex-container {
@@ -59,10 +59,8 @@ section:nth-child(even) {
 }
 
 .example > iframe {
-  height: 100%;
-  width: 100%;
   resize: both;
-  overflow: hidden;
+  z-index: 10;
 }
 
 .code-container {
@@ -76,13 +74,16 @@ section:nth-child(even) {
   justify-self: end;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1px;
 }
 
 .tab-container > button {
   padding: 0.5em 0;
   border-radius: 10px 10px 0 0;
   background-color: var(--lightGrey);
-  border: 1px solid white;
+  border: 1.5px solid white;
+  font-size: 1rem;
+  color: var(--lightGrey);
 }
 
 .code {
