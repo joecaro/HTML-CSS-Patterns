@@ -3,7 +3,7 @@ import Example from "./components/Example";
 
 const colors = `
 .coral {
-  background-color: coral;
+  background-color: #ffa07d;
 }
 
 .lightskyblue {
@@ -26,7 +26,7 @@ const examples = [
   {
     title: "Centered",
     html: `<div class='container'>
-    <div class='box' contenteditable>(^ڡ^)</div>
+    <div class='box coral' contenteditable>(^ڡ^)</div>
   </div>`,
     cssStatic: `
     * {
@@ -40,14 +40,11 @@ const examples = [
     .box {
       padding: 1em;
       border-radius: 10px;
-      background-color: coral;
       font-size: 1.3rem;
       display: grid;
       place-items: center;
     }`,
-    cssDynamic: `
-
-    .container {
+    cssDynamic: `.container {
       height: 100vh;
       width: 100vw;
       display: grid;
@@ -56,7 +53,7 @@ const examples = [
     }`,
   },
   {
-    title: "Tiled List",
+    title: "Tiled List - Grid",
     html: `<div class='container'>
     <div class='box moccasin' contenteditable>1</div>
     <div class='box palegreen' contenteditable>2</div>
@@ -78,9 +75,7 @@ const examples = [
       display: grid;
       place-items: center;
     }`,
-    cssDynamic: `
-
-    .container {
+    cssDynamic: `.container {
       background-color: white;
       padding: .5rem;
       height: 100vh;
@@ -89,6 +84,49 @@ const examples = [
       gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }`,
+  },
+  {
+    title: "Tiled List - Flex",
+    html: `<div class='container'>
+    <div class='box moccasin' contenteditable>1</div>
+    <div class='box palegreen' contenteditable>2</div>
+    <div class='box lightskyblue' contenteditable>3</div>
+    <div class='box coral' contenteditable>4</div>
+  </div>`,
+    cssStatic: `
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      max-height: 100vh;
+    }
+    
+    .box {
+      border-radius: 1rem;
+      display: grid;
+      place-items: center;
+    }`,
+    cssDynamic: `.container {
+      background-color: white;
+      padding: .5rem;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .box {
+      /* flex shorthand */
+      /* change values to see change */
+      /* flex-grow  flex-shrink  flex-basis */
+      flex: 1 0 200px;
+
+    }
+    `,
   },
   {
     title: "Holy Grail",
@@ -113,7 +151,6 @@ const examples = [
     }
     `,
     cssDynamic: `
-
     .container {
       height: 100vh;
       width: 100vw;
@@ -144,7 +181,7 @@ const examples = [
     `,
   },
   {
-    title: "Cards",
+    title: "Cards List",
     html: `<div class='container'>
     <div class='box lightskyblue'></div>
     <div class='box lightskyblue'></div>
@@ -172,7 +209,6 @@ const examples = [
     }
     `,
     cssDynamic: `
-
     .container {
       height: 100vh;
       width: 100vw;
@@ -185,6 +221,120 @@ const examples = [
       align-content: flex-start;
     }
 
+    `,
+  },
+  {
+    title: "Clamped Card Size",
+    html: `<div class='container'>
+    <div class='card coral'>
+    <h4>TITLE<h4>
+      <div class='pic lightskyblue'></div>
+      <p>Pariatur nulla nisi excepteur ad aliquip magna esse culpa sint adipisicing et consectetur proident.</p>
+    </div>
+  </div>`,
+    cssStatic: `  
+    * {
+    box-sizing: border-box;
+  }
+
+    body {
+      margin: 0;
+    }
+    .container {
+      height: 100vh;
+      width: 100vw;
+      overflow-y: scroll;
+      padding: 1rem;
+      background: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .container div {
+      border-radius: .3rem;
+    }
+
+    h4 {
+      font-size: 1.4rem;
+      margin: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    
+    `,
+    cssDynamic: `
+    .card {
+      width: clamp(25ch, 50%, 40ch);
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      padding: .5rem;
+    }
+
+    .pic {
+      height: 125px;
+      width: 100%;
+    }
+    `,
+  },
+  {
+    title: "Maintain Image Aspect Ratio",
+    html: `<div class='container'>
+    <div class='card coral'>
+    <h4>TITLE<h4>
+      <div class='pic lightskyblue'></div>
+      <p>Pariatur nulla nisi excepteur ad aliquip magna esse culpa sint adipisicing et consectetur proident.</p>
+    </div>
+  </div>`,
+    cssStatic: `  
+    * {
+    box-sizing: border-box;
+  }
+
+    body {
+      margin: 0;
+    }
+    .container {
+      height: 100vh;
+      width: 100vw;
+      overflow-y: scroll;
+      padding: 1rem;
+      background: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .container div {
+      border-radius: .3rem;
+    }
+
+    h4 {
+      font-size: 1.4rem;
+      margin: 1rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    
+    `,
+    cssDynamic: `
+    .card {
+      width: clamp(25ch, 50%, 40ch);
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      padding: .5rem;
+    }
+
+    .pic {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
     `,
   },
   {
@@ -211,7 +361,7 @@ const examples = [
 
     .box:nth-child(n) {
       height: 130px;
-      background-color: coral;
+      background-color: #ffa07d;
     }
     .box:nth-child(3n) {
       height: 100px;
@@ -223,7 +373,6 @@ const examples = [
     }
     `,
     cssDynamic: `
-
     .container {
       height: 100vh;
       width: 100vw;
@@ -286,10 +435,7 @@ const examples = [
       background-color: #64A664;
     }
     `,
-    cssDynamic: `
-
- 
-    
+    cssDynamic: `    
     /* tree level */
     ul {
       position: relative;
