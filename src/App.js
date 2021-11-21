@@ -87,7 +87,7 @@ const examples = [
       width: 100vw;
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }`,
   },
   {
@@ -146,12 +146,14 @@ const examples = [
   {
     title: "Cards",
     html: `<div class='container'>
-    <div class='box'></div>
-    <div class='box'></div>
-    <div class='box'></div>
-    <div class='box'></div>
-    <div class='box'></div>
-    <div class='box'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
+    <div class='box lightskyblue'></div>
   </div>`,
     cssStatic: `  
     * {
@@ -174,6 +176,7 @@ const examples = [
     .container {
       height: 100vh;
       width: 100vw;
+      overflow-y: scroll;
       padding: 1rem;
       background: white;
       display: flex;
@@ -184,10 +187,198 @@ const examples = [
 
     `,
   },
+  {
+    title: "Masonry",
+    html: `<div class='container'>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+    <div class='box'></div>
+  </div>`,
+    cssStatic: `  
+    * {
+    box-sizing: border-box;
+  }
+
+    body {
+      margin: 0;
+    }
+
+    .box:nth-child(n) {
+      height: 130px;
+      background-color: coral;
+    }
+    .box:nth-child(3n) {
+      height: 100px;
+      background-color: pink;
+    }
+    .box:nth-child(2n) {
+      height: 80px;
+      background-color: lightskyblue;
+    }
+    `,
+    cssDynamic: `
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      padding: 1rem;
+      background: white;
+      columns: auto;
+      column-width: 100px;
+      column-gap: 1rem;
+    }
+    
+    .box {
+      width: 100px;
+      border-radius: 1rem;
+      display: inline-block;
+    }
+    `,
+  },
+  {
+    title: "Tree",
+    html: `<div class='container'>
+    <ul>
+      <li >
+      <div class="box"></div>
+          <ul>
+            <li><div class="box"></div></li>
+            <li><div class="box"></div></li>
+          </ul>
+      </li>
+      <li >
+      <div class="box"></div>
+          <ul>
+            <li><div class="box"></div></li>
+            <li><div class="box"></div></li>
+          </ul>
+      </li>
+    </ul>
+  </div>`,
+    cssStatic: `  
+    * {
+    box-sizing: border-box;
+  }
+
+    body {
+      margin: 0;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      background: white;
+      display: grid;
+      place-items: center;
+
+    }
+
+    .box {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 3px;
+      background-color: #64A664;
+    }
+    `,
+    cssDynamic: `
+
+ 
+    
+    /* tree level */
+    ul {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 2rem 1rem 0rem 1rem;
+    
+
+    }
+
+    /* node */
+    li {
+      padding: 2rem 1rem 0rem 1rem;
+      position: relative;
+
+      /* Center the content */
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* vertical line before node */
+    li::before {
+      border-right: 1px solid rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      content: '';
+
+      /* Position */
+      position: absolute;
+      top: 0;
+      right: 50%;
+
+      /* Size */
+      height: 2rem;
+      width: 50%;
+    }
+
+    /* vertical line after node */
+    ul::before {
+      border-right: 1px solid #000;
+      content: '';
+
+      /* size */
+      width: 50%;
+      height: 2rem;
+
+      /* postition */
+      position: absolute;
+      top: 0;
+      right: 50%;
+    }
+
+    /* horizontal line */
+    li::after {
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
+      content: '';
+
+      /* Position */
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      /* Size */
+      width: 50%;
+    }
+
+    li:first-child::before,
+    li:last-child::after {
+      /* Remove the top of border from the first and last items */
+      border-top: none;
+    }
+
+    /* Add a root item if you want */
+    li_root::before {
+      border-right: none;
+    }
+    `,
+  },
 ];
+
 function App() {
   return (
     <div className='App'>
+      <section className='section-container'>
+        <h1>CSS Design Patterns</h1>
+        <p>CSS patterns that I find useful and you may too. :)</p>
+      </section>
       {examples.map((example) => (
         <Example example={example} colors={colors} />
       ))}

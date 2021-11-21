@@ -6,12 +6,17 @@
   --lightBlueGrey: #e4e4e4;
 }
 
+h1 {
+  color: var(--lightGrey);
+}
+
 h2 {
   margin: 0;
 }
 
 p {
   margin: 0;
+  color: var(--lightGrey);
 }
 
 .App {
@@ -61,6 +66,7 @@ section:nth-child(even) {
 .example > iframe {
   resize: both;
   z-index: 10;
+  box-shadow: 0 0 20px -10px #78aac4;
 }
 
 .code-container {
