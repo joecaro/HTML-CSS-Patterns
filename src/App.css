@@ -88,6 +88,7 @@ section:nth-child(even) {
   border-radius: 10px 10px 0 0;
   background-color: var(--lightGrey);
   border: 1.5px solid white;
+  border-bottom: none;
   font-size: 1rem;
   color: var(--lightGrey);
 }
@@ -95,7 +96,6 @@ section:nth-child(even) {
 .code {
   background-color: #263238;
   font-size: 1.3rem;
-  margin-top: -1px;
 }
 
 .code-bottom {
