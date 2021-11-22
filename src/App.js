@@ -1,7 +1,7 @@
 import "./App.css";
 import Example from "./components/Example";
 
-const colors = `
+export const colors = `
 .coral {
   background-color: #ffa07d;
 }
@@ -22,7 +22,7 @@ const colors = `
   background-color: pink;
 }`;
 
-const examples = [
+export const examples = [
   {
     title: "Centered",
     html: `<div class='container'>

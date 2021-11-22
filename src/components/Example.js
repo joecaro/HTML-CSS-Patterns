@@ -18,9 +18,8 @@ export default function Example({ example, colors }) {
   const [css, setCss] = useState(example.cssDynamic);
   const [html, setHtml] = useState(example.html);
 
-  const srcDoc = `
-	<html>
-		<body>${html}</body>
+  const srcDoc = `<html>
+    <body>${html}</body>
 		<style>${htmlStyle + example.cssStatic + css + colors}</style>
 	</html>
   `;
@@ -41,6 +40,7 @@ export default function Example({ example, colors }) {
         <div className='ex-container'>
           <div className='example'>
             <iframe
+              data-testid='iframe'
               srcDoc={srcDoc}
               title='example'
               width='100%'
@@ -86,6 +86,7 @@ export default function Example({ example, colors }) {
             )}
             {selectedTab === "css" && (
               <CodeMirror
+                data-testid={`${example.title}-test`}
                 value={css}
                 onBeforeChange={handleCssChange}
                 className='code'
